@@ -790,8 +790,8 @@ namespace ezpwd {
 				    std::vector<int>   *position= 0 )
 	    const
 	{
-	    if ( len < ( parity ? 0 : NROOTS ) + 1 )
-		throw std::runtime_error( "reed-solomon: must provide all parity and at least one non-parity symbol" );
+	 //    if ( len < ( parity ? 0 : NROOTS ) + 1 )
+		// throw std::runtime_error( "reed-solomon: must provide all parity and at least one non-parity symbol" );
 	    if ( ! parity ) {
 		len			       -= NROOTS;
 		parity				= data + len;
@@ -816,7 +816,8 @@ namespace ezpwd {
 		dataptr				= &tmp[LOAD - len];
 		for ( int i = 0; i < NROOTS; ++i ) {
 		    if ( TYP( parity[i] ) & msk )
-			throw std::runtime_error( "reed-solomon: parity data contains information beyond R-S symbol size" );
+			//throw std::runtime_error( "reed-solomon: parity data contains information beyond R-S symbol size" );
+			return -1;
 		    tmp[LOAD + i]		= parity[i];
 		}
 		pariptr				= &tmp[LOAD];
